@@ -68,16 +68,16 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [√] Commit: `Implement list_all_as_string function in Notification repository.`
     -   [√] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
 -   **STAGE 3: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Commit: `Implement receive_notification function in Notification service.`
-    -   [ ] Commit: `Implement receive function in Notification controller.`
-    -   [ ] Commit: `Implement list_messages function in Notification service.`
-    -   [ ] Commit: `Implement list function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
+    -   [√] Commit: `Create Notification service struct skeleton.`
+    -   [√] Commit: `Implement subscribe function in Notification service.`
+    -   [√] Commit: `Implement subscribe function in Notification controller.`
+    -   [√] Commit: `Implement unsubscribe function in Notification service.`
+    -   [√] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [√] Commit: `Implement receive_notification function in Notification service.`
+    -   [√] Commit: `Implement receive function in Notification controller.`
+    -   [√] Commit: `Implement list_messages function in Notification service.`
+    -   [√] Commit: `Implement list function in Notification controller.`
+    -   [√] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -91,3 +91,9 @@ This is the place for you to write reflections:
 2. In Rust, static variables are required to have a fixed size known at compile time and must be initialized with a constant expression. Unlike Java, Rust enforces memory safety and thread safety at compile time through its ownership system. Allowing direct mutation of static variables would violate these safety guarantees since multiple threads could modify the static data simultaneously, leading to data races. This is why we need to use synchronization primitives like lazy_static combined with RwLock or Mutex to safely mutate static data - it ensures proper synchronization and thread safety at runtime while maintaining Rust's compile-time safety guarantees.
 
 #### Reflection Subscriber-2
+
+1. Yes, I explored src/lib.rs and other parts of the codebase beyond the tutorial steps. From src/lib.rs, I learned about how the application handles errors through the custom Result type and AppError enum. This helped me understand Rust's error handling patterns better. I also explored how the different modules are organized and exported through the lib.rs file, which taught me about Rust's module system and visibility rules.
+
+2. The Observer pattern makes it very easy to add new subscribers (Receiver instances) to the system. Each subscriber just needs to register itself by calling the subscribe endpoint with its product type, and it will automatically start receiving relevant notifications. The publisher doesn't need to know about or manage individual subscribers - it just broadcasts notifications and the pattern handles delivery. For multiple Main app instances, it would still be relatively straightforward since each instance would maintain its own set of subscribers independently. However, you would need to ensure proper synchronization between Main instances if they need to share subscriber state.
+
+3. Yes, I enhanced the Postman collection documentation by adding detailed descriptions for each endpoint, including expected request/response formats and example payloads. I also added environment variables to easily switch between different receiver instances. This made testing much easier as I could quickly verify behavior across multiple receivers. Additionally, I wrote some basic integration tests using Rust's testing framework to verify the notification flow works correctly. Having these tests helped catch issues early and will make it easier to maintain the code.
